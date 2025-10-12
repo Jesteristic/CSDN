@@ -1,0 +1,90 @@
+{% comment %} {{% load static %}} {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSDN博客</title>
+    <link rel="stylesheet" href="{% static 'bootstrap5/css/bootstrap.min.css' %}"/>
+    <script src="{% static 'bootstrap5/js/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap5/js/bootstrap.bundle.min.js' %}"></script>
+    <link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
+    <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
+    <script src="{% static 'js/pub_blog.js' %}"></script>
+    <link rel="stylesheet"href="{% static 'css/base.css' %}"/>
+    <style>
+      #editor—wrapper {
+        border: 1px solid #ccc;
+        z-index: 100; /* 按需定义 */
+      }
+      #toolbar-container {
+        border-bottom: 1px solid #ccc;
+      }
+      #editor-container {
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="p-3 bg-light border-bottom mb-3">
+      <div class="container" style="max-width: 960px">
+        <div
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+        >
+          <a
+            href="/"
+            class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+          >
+            <img src="{% static 'image/logo.jpeg' %}" alt="logo" width="40" height="40" class="me-2"/>
+          </a>
+          <ul
+            class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+          >
+            <li><a href="#" class="nav-link px-2 text-secondary">首页</a></li>
+            <li><a href="#" class="nav-link px-2 text-secondary">发布</a></li>
+          </ul>
+          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+            <input
+              type="search"
+              class="form-control"
+              placeholder="搜索..."
+              aria-label="Search"
+            />
+          </form>
+          <div class="text-end">
+            <button type="button" class="btn btn-outline-primary me-2">
+              登录
+            </button>
+            <button type="button" class="btn btn-primary">注册</button>
+          </div>
+        </div>
+      </div>
+    </header>
+  </body>
+  <main class="container bg-white p-3 rounded" style="max-width: 960px">
+    <h3>发布博客</h3>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">标题</label>
+            <input type="text" class="form-control" id="title" placeholder="请输入标题">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">话题</label>
+            <select class="form-select" aria-label="Default select example">
+              <option selected>--请选择--</option>
+              <option value="Django">Django</option>
+              <option value="Python">Python</option>
+            </select>
+        </div>
+        <label class="mb-3">内容</label>
+        <div id="editor—wrapper">
+          <div id="toolbar-container"><!-- 工具栏 --></div>
+          <div id="editor-container"><!-- 编辑器 --></div>
+        </div>
+        <div class="mb-3 text-end">
+          <button type="submit" class="btn btn-primary mt-3">发布</button>
+        </div>
+    </form>
+  </main>
+</html>

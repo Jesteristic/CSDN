@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}发布{% endblock %}
+{% block head %}
+    <link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
+    <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
+    <script src="{% static 'js/pub_blog.js' %}"></script>
+    <stRemove-Item -Recurse -Force .gityle>
+      #editor—wrapper {
+        border: 1px solid #ccc;
+        z-index: 100; /* 按需定义 */
+      }
+      #toolbar-container {
+        border-bottom: 1px solid #ccc;
+      }
+      #editor-container {
+        height: 500px;
+      }
+    </style>
+{% endblock %}
+{% block main %}
+    <h3>发布博客</h3>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">标题</label>
+            <input type="text" class="form-control" id="title" placeholder="请输入标题">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">话题</label>
+            <select class="form-select" aria-label="Default select example">
+              <option selected>--请选择--</option>
+              <option value="Django">Django</option>
+              <option value="Python">Python</option>
+            </select>
+        </div>
+        <label class="mb-3">内容</label>
+        <div id="editor—wrapper">
+          <div id="toolbar-container"><!-- 工具栏 --></div>
+          <div id="editor-container"><!-- 编辑器 --></div>
+        </div>
+        <div class="mb-3 text-end">
+          <button type="submit" class="btn btn-primary mt-3">发布</button>
+        </div>
+    </form>
+{% endblock %}

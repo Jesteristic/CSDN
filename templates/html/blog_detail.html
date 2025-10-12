@@ -1,0 +1,102 @@
+{% comment %} {{% load static %}} {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSDN博客</title>
+    <link
+      rel="stylesheet"
+      href="{% static 'bootstrap5/css/bootstrap.min.css' %}"
+    />
+    <script src="{% static 'bootstrap5/js/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap5/js/bootstrap.bundle.min.js' %}"></script>
+    <link
+      rel="stylesheet"
+      href="{% static 'css/base.css' %}"
+    />
+  </head>
+  <body>
+    <header class="p-3 bg-light border-bottom mb-3">
+      <div class="container" style="max-width: 960px">
+        <div
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+        >
+          <a
+            href="/"
+            class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+          >
+            <img src="{% static 'image/logo.jpeg' %}" alt="logo" width="40" height="40" class="me-2"/>
+          </a>
+          <ul
+            class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+          >
+            <li><a href="#" class="nav-link px-2 text-secondary">首页</a></li>
+            <li><a href="#" class="nav-link px-2 text-secondary">发布</a></li>
+          </ul>
+          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+            <input
+              type="search"
+              class="form-control"
+              placeholder="搜索..."
+              aria-label="Search"
+            />
+          </form>
+          <div class="text-end">
+            <button type="button" class="btn btn-outline-primary me-2">
+              登录
+            </button>
+            <button type="button" class="btn btn-primary">注册</button>
+          </div>
+        </div>
+      </div>
+    </header>
+  </body>
+  <main class="container bg-white p-3 rounded" style="max-width: 960px">
+    <h3>Django零基础到项目实战</h3>
+    <hr>
+    <div class="mt-2 mb-2">
+        <img src="{% static 'image/user.webp' %}" class="rounded-circle" alt="" width="30" height="30">
+        <span class="ms-2" >张三</span>
+        <span class="ms-2 text-secondary">于 2024-06-20 11:28 发布</span>
+    </div>
+    <hr>
+    <div class="py-2">
+        <h4>详情</h4>
+        <div>
+            Django是一个由Python编写的开源Web框架，遵循MVC设计模式。它由Adrian Holovaty和Simon Willison于2005年创建，旨在简化复杂、数据库驱动的网站的开发过程。Django以其“电池全备”的理念而闻名，提供了许多内置功能，使开发人员能够快速构建高效且可扩展的Web应用程序。
+        </div>
+    </div>
+    <hr>
+    <div class="mt-2">
+        <h4>评论(10)</h4>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="mt-2">
+                <label for="comment" class="form-label">发表评论</label>
+                <textarea class="form-control" id="comment" rows="3" height="200">请输入评论...</textarea>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary mt-2">发布评论</button>
+            </div>
+            <div class="mt-2">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div class="user-info">
+                                <img src="{% static 'image/user.webp' %}" class="rounded-circle" alt="" width="40" height="40">
+                                <span class="ms-2 text-secondary">李四</span>
+                            </div>
+                            <div class="create-time text-secondary" style="line-height:40px">发布时间： 2024-06-10 11:28</div>
+                        </div>
+                        <div class="m-2">
+                            这是评论内容
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+
+  </main>
+</html>

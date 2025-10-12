@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}CSDN博客{% endblock %}
+{% block main %}
+  <h3>博客列表</h3>
+    <div class="row row-cols-2">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <a herf="#">Django零基础到项目实战</a>
+                </div>
+                <div class="card-body" style="height:100px">
+                    <p class="card-text">With supporting</p>
+                </div>
+                <div class="card-footer text-body-secondary d-flex justify-content-between">
+                    <div>
+                        <img src="{% static 'image/user.webp' %}" class="rounded-circle" alt="" width="30" height="30">
+                        <span class="ms-2" style="line-height:30px">张三</span>
+                    </div>
+                    <div style="line-height:30px">发布时间： 2024-06-10 11:28</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
