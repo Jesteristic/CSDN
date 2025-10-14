@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog'
+    'blog',
+    'csdnauth',
 ]
 
 MIDDLEWARE = [
@@ -80,8 +81,12 @@ WSGI_APPLICATION = 'csdn.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',  # 默认
+        'NAME': 'CSDN',  # 连接的数据库
+        'HOST': '127.0.0.1',  # mysql的ip地址
+        'PORT': 3306,  # mysql的端口
+        'USER': 'root',  # mysql的用户名
+        'PASSWORD': 'lfq1314520'  # mysql的密码
     }
 }
 
@@ -128,3 +133,24 @@ STATICFILES_DIRS=[BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 配置邮箱的服务器
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.qq.com'  # QQ 邮箱的 SMTP 服务器地址
+
+# 配置邮箱的端口号，默认是 25，如果要使用 587 端口，需要设置 EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True  # 启用 TLS 加密
+EMAIL_USE_SSL = False  # 如果使用 465 端口，则启用 SSL 加密，同时关闭 TLS
+
+# 配置邮件是否使用本地时间
+EMAIL_USE_LOCALTIME = True
+
+# 设置发送的邮件账号
+EMAIL_HOST_USER = '1875224484@qq.com'  # 替换为你的邮箱账号
+
+# 设置邮件账号的密码或授权码（QQ 邮箱需要授权码）
+EMAIL_HOST_PASSWORD = 'oxupzozhpwvxcgea'  # 替换为你的授权码
+
+# 默认使用哪一个邮箱进行邮件发送
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

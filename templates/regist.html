@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}注册用户{% endblock %}
+{% block head %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="{% static 'js/regist.js' %}"></script>
+{% endblock %}
 {% block main %}
     <div class="m-auto" style="max-width: 330px">
       <h3 class="mb-3">注册用户</h3>
@@ -35,7 +39,7 @@
             <button
               class="btn btn-outline-secondary"
               type="button"
-              id="btn_captcha"
+              id="btn_send_captcha"
             >
               获取验证码
             </button>
