@@ -5,18 +5,38 @@ from django.urls import reverse
 from django.views.decorators.http import require_http_methods
 import random
 import string
-from csdnauth.models import CaptchaModels,RegistForms
-from django.contrib.auth import get_user_model
+from csdnauth.models import CaptchaModels,RegistForms,LoginForms
+from django.contrib.auth import get_user_model,login
 
 User=get_user_model()
 
-# Create your views here.
-def login(request):
+@ require_http_methods(['GET','POST'])
+def csdn_login(request):
     """用户登录接口"""
-    return render(request,'login.html')
+    if request.method == 'GET':
+        return render(request,'login.html')
+    else:
+        form = LoginForms(request.POST)
+        if form.is_valid():
+            email=form.cleaned_data.get('email')
+            password=form.cleaned_data.get('password')
+            remember=form.cleaned_data.get('remember')
+            user=User.objects.filter(email=email).first()
+            if user and user.check_password(password):
+                # 登录用户
+                login(request,user)
+                if remember:
+                    request.session.set_expiry(None) # 记住我，默认两周过期时间
+                else:
+                    request.session.set_expiry(0) # 关闭浏览器即过期
+                return redirect('/')
+            else:
+                print("邮箱或密码错误!") # 打印错误信息,方便调试
+                form.add_error('email','邮箱或密码错误！')
+                return render(request,'login.html',context={"form":form})
 
 @ require_http_methods(['GET','POST'])
-def regist(request):
+def csdn_regist(request):
     """
     用户注册接口
     """
@@ -46,7 +66,7 @@ def send_captcha_email(request):
     obj, created=CaptchaModels.objects.update_or_create(email=email,defaults={"captcha_code":captcha_code})
     print(obj,created)
     # 发送邮件
-    _=send_mail(subject="CSDN注册验证码",
+    send_mail(subject="CSDN注册验证码",
                 message=f"您的注册验证码是：{captcha_code}，请勿泄露",
                 from_email=None
                 ,recipient_list=[email])

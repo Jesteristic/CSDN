@@ -38,4 +38,11 @@ class RegistForms(forms.Form):
             raise forms.ValidationError('验证码错误!')
         return captcha
         
+class LoginForms(forms.Form):
+    """
+    登录表单
+    """
+    email=forms.EmailField(max_length=100,error_messages={'required':'邮箱不能为空!','invalid':'邮箱格式错误!'})
+    password=forms.CharField(max_length=20,min_length=8,error_messages={'required':'密码不能为空!','min_length':'密码长度不能小于8位!','max_length':'密码长度不能大于20位!'})
+    remenber=forms.BooleanField(required=False)
 
