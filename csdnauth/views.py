@@ -6,7 +6,7 @@ from django.views.decorators.http import require_http_methods
 import random
 import string
 from csdnauth.models import CaptchaModels,RegistForms,LoginForms
-from django.contrib.auth import get_user_model,login
+from django.contrib.auth import get_user_model,login,logout
 
 User=get_user_model()
 
@@ -72,9 +72,10 @@ def send_captcha_email(request):
                 ,recipient_list=[email])
     return JsonResponse({"code":200,"msg":"验证码发送成功"})
 
-def logout(request):
+@ require_http_methods(['GET'])
+def csdn_logout(request):
     """
     用户登出接口
     """
-    return HttpResponse("logout")
-    # return render(request,'logout.html')
+    logout(request)
+    return redirect(reverse('blog:index'))

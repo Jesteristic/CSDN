@@ -25,4 +25,4 @@ window.onload = function () {
         config: toolbarConfig,
         mode: 'default', // or 'simple'
     })
-}
+};

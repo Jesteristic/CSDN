@@ -4,7 +4,7 @@
     <link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
     <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
     <script src="{% static 'js/pub_blog.js' %}"></script>
-    <stRemove-Item -Recurse -Force .gityle>
+    <style Remove-Item -Recurse -Force .gityle>
       #editor—wrapper {
         border: 1px solid #ccc;
         z-index: 100; /* 按需定义 */
@@ -27,10 +27,10 @@
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">话题</label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" id="topic_Category">
               <option selected>--请选择--</option>
-              <option value="Django">Django</option>
-              <option value="Python">Python</option>
+              <option value="Django",id="Django">Django</option>
+              <option value="Python",id="Python">Python</option>
             </select>
         </div>
         <label class="mb-3">内容</label>
